@@ -1,10 +1,31 @@
-sudo: false
-
+sudo: required
 language: java
-jdk: openjdk11
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: "testng-team"
+
+env:
+  global:
+    - GPG_DIR="`pwd`/deploy"
+
+cache:
+  directories:
+    - "$HOME/.m2"
+    - '$HOME/.sonar/cache'
+
+matrix:
+  fast_finish: true
+  include:
+    - jdk: openjdk11
 
 before_install:
 - unset _JAVA_OPTIONS
 
 script:
-- mvn -Prun-its verify
+  #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  - mvn -Prun-its verify
+
+after_success:
+  - "$GPG_DIR/publish.sh"
