@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "${TRAVIS_JDK_VERSION}" == "openjdk11" ] ; then
+if [ "${TRAVIS_JDK_VERSION}" == "oraclejdk8" ] ; then
   if [ "${TRAVIS_PULL_REQUEST}" == "false" ] ; then
     if [ "${TRAVIS_BRANCH}" == "master" ] ; then
       mvn deploy --settings $GPG_DIR/settings.xml -DperformRelease=true -DskipTests=true
@@ -12,5 +12,5 @@ if [ "${TRAVIS_JDK_VERSION}" == "openjdk11" ] ; then
     echo "Deploy skipped: On pull request"
   fi
 else
-  echo "Deploy skipped: Only on openjdk11"
+  echo "Deploy skipped: Only on oraclejdk8"
 fi
