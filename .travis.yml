@@ -18,7 +18,7 @@ cache:
 matrix:
   fast_finish: true
   include:
-    - jdk: openjdk11
+    - jdk: oraclejdk8
 
 before_install:
 - unset _JAVA_OPTIONS

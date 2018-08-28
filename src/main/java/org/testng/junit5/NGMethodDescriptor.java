@@ -8,7 +8,7 @@ import org.junit.platform.engine.support.descriptor.MethodSource;
 public class NGMethodDescriptor extends AbstractTestDescriptor {
 
   static NGMethodDescriptor newMethodDescriptor(UniqueId container, Method method) {
-    var id = container.append("testng-method", method.getName());
+    UniqueId id = container.append("testng-method", method.getName());
     return new NGMethodDescriptor(id, method);
   }
 

@@ -10,32 +10,22 @@ String[] files = new String[] {
   // compile: main
   // <empty>
   // compile: test
-  "target/test-classes/BasicTests.class",
-  // test: junit-platform
-  "target/junit-platform/console-launcher.cmd.log",
-  "target/junit-platform/console-launcher.out.log"
+  "target/test-classes/JupiterTests.class",
+  "target/test-classes/TestNGTests.class",
+  // test: surefire
+  "target/surefire-reports/JupiterTests.txt",
+  "target/surefire-reports/TestNGTests.txt"
 };
 
 String[] emptyFiles = new String[] {
-  "target/junit-platform/console-launcher.err.log"
 };
 
 String log = new String(Files.readAllBytes(basedir.toPath().resolve("build.log")), "UTF-8");
 String[] snippets = new String[] {
-  "[INFO] Launching JUnit Platform...",
-  "[INFO] Test run finished",
-  "[INFO] [         2 containers found      ]", // 1 engine + 1 class
-  "[INFO] [         0 containers skipped    ]",
-  "[INFO] [         2 containers started    ]",
-  "[INFO] [         0 containers aborted    ]",
-  "[INFO] [         2 containers successful ]",
-  "[INFO] [         0 containers failed     ]",
-  "[INFO] [         2 tests found           ]", // 2 methods
-  "[INFO] [         0 tests skipped         ]",
-  "[INFO] [         2 tests started         ]",
-  "[INFO] [         0 tests aborted         ]",
-  "[INFO] [         2 tests successful      ]",
-  "[INFO] [         0 tests failed          ]",
+  "[DEBUG] Using configured provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider",
+  "[INFO] Running TestNGTests",
+  "[INFO] Running JupiterTests",
+  "[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0",
   "[INFO] BUILD SUCCESS"
 };
 

@@ -25,7 +25,7 @@ public class NGClassDescriptor extends AbstractTestDescriptor {
   }
 
   static NGClassDescriptor newContainerDescriptor(UniqueId container, Class<?> candidate) {
-    var id = container.append("testng-class", candidate.getTypeName());
+    UniqueId id = container.append("testng-class", candidate.getTypeName());
     return new NGClassDescriptor(id, candidate.getSimpleName(), ClassSource.from(candidate));
   }
 
