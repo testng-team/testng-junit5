@@ -4,7 +4,6 @@ import static org.junit.platform.commons.util.ReflectionUtils.isAbstract;
 import static org.junit.platform.commons.util.ReflectionUtils.isInnerClass;
 import static org.junit.platform.commons.util.ReflectionUtils.isPublic;
 
-import org.junit.platform.engine.TestSource;
 import org.junit.platform.engine.UniqueId;
 import org.junit.platform.engine.support.descriptor.AbstractTestDescriptor;
 import org.junit.platform.engine.support.descriptor.ClassSource;
@@ -24,17 +23,24 @@ public class NGClassDescriptor extends AbstractTestDescriptor {
     return true;
   }
 
-  static NGClassDescriptor newContainerDescriptor(UniqueId container, Class<?> candidate) {
-    UniqueId id = container.append("testng-class", candidate.getTypeName());
-    return new NGClassDescriptor(id, candidate.getSimpleName(), ClassSource.from(candidate));
+  static NGClassDescriptor newContainerDescriptor(UniqueId container, Class<?> testClass) {
+    UniqueId id = container.append("testng-class", testClass.getTypeName());
+    return new NGClassDescriptor(id, testClass);
   }
 
-  private NGClassDescriptor(UniqueId uniqueId, String displayName, TestSource source) {
-    super(uniqueId, displayName, source);
+  private final Class<?> testClass;
+
+  private NGClassDescriptor(UniqueId uniqueId, Class<?> testClass) {
+    super(uniqueId, testClass.getSimpleName(), ClassSource.from(testClass));
+    this.testClass = testClass;
   }
 
   @Override
   public Type getType() {
     return Type.CONTAINER;
+  }
+
+  public Class<?> getTestClass() {
+    return testClass;
   }
 }
