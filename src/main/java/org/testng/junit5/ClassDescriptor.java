@@ -8,7 +8,7 @@ import org.junit.platform.engine.UniqueId;
 import org.junit.platform.engine.support.descriptor.AbstractTestDescriptor;
 import org.junit.platform.engine.support.descriptor.ClassSource;
 
-public class NGClassDescriptor extends AbstractTestDescriptor {
+public class ClassDescriptor extends AbstractTestDescriptor {
 
   static boolean isCandidate(Class<?> candidate) {
     if (!isPublic(candidate)) {
@@ -23,14 +23,14 @@ public class NGClassDescriptor extends AbstractTestDescriptor {
     return true;
   }
 
-  static NGClassDescriptor newContainerDescriptor(UniqueId container, Class<?> testClass) {
+  static ClassDescriptor newContainerDescriptor(UniqueId container, Class<?> testClass) {
     UniqueId id = container.append("testng-class", testClass.getTypeName());
-    return new NGClassDescriptor(id, testClass);
+    return new ClassDescriptor(id, testClass);
   }
 
   private final Class<?> testClass;
 
-  private NGClassDescriptor(UniqueId uniqueId, Class<?> testClass) {
+  private ClassDescriptor(UniqueId uniqueId, Class<?> testClass) {
     super(uniqueId, testClass.getSimpleName(), ClassSource.from(testClass));
     this.testClass = testClass;
   }
