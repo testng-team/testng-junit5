@@ -13,7 +13,6 @@ import org.junit.platform.engine.TestEngine;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.engine.UniqueId;
 import org.junit.platform.engine.support.descriptor.EngineDescriptor;
-import org.testng.ITestNGListener;
 import org.testng.TestNG;
 import org.testng.annotations.Test;
 
@@ -77,7 +76,7 @@ public class TestNGine implements TestEngine {
       Class<?>[] testClasses = {((ClassDescriptor) classDescriptor).getTestClass()};
 
       TestNG testNG = new TestNG(false);
-      testNG.addListener((ITestNGListener) new TestListener(engineListener, classId));
+      testNG.addListener(new TestListener(engineListener, classId));
       testNG.setTestClasses(testClasses);
       testNG.run();
 
