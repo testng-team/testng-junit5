@@ -25,27 +25,21 @@ class DiscoveryHelper {
 
   void discover(EngineDescriptor engine, BiConsumer<EngineDescriptor, Class<?>> handler) {
     // class-path root
-    engineDiscoveryRequest
-        .getSelectorsByType(ClasspathRootSelector.class)
-        .stream()
+    engineDiscoveryRequest.getSelectorsByType(ClasspathRootSelector.class).stream()
         .map(ClasspathRootSelector::getClasspathRoot)
         .map(uri -> findAllClassesInClasspathRoot(uri, classFilter))
         .flatMap(Collection::stream)
         .forEach(candidate -> handler.accept(engine, candidate));
 
     // package
-    engineDiscoveryRequest
-        .getSelectorsByType(PackageSelector.class)
-        .stream()
+    engineDiscoveryRequest.getSelectorsByType(PackageSelector.class).stream()
         .map(PackageSelector::getPackageName)
         .map(packageName -> findAllClassesInPackage(packageName, classFilter))
         .flatMap(Collection::stream)
         .forEach(candidate -> handler.accept(engine, candidate));
 
     // class
-    engineDiscoveryRequest
-        .getSelectorsByType(ClassSelector.class)
-        .stream()
+    engineDiscoveryRequest.getSelectorsByType(ClassSelector.class).stream()
         .map(ClassSelector::getJavaClass)
         .filter(classFilter)
         .forEach(candidate -> handler.accept(engine, candidate));
