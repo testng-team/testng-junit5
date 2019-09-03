@@ -4,7 +4,7 @@
 
   <groupId>com.github.testng-team</groupId>
   <artifactId>testng-junit5</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
 
   <name>TestNG TestEngine</name>
@@ -14,7 +14,7 @@
     <connection>scm:git:https://github.com/testng-team/testng-junit5</connection>
     <developerConnection>scm:git:git@github.com:testng-team/testng-junit5.git</developerConnection>
     <url>https://github.com/testng-team/testng-junit5</url>
-    <tag>HEAD</tag>
+    <tag>v0.0.1</tag>
   </scm>
 
   <organization>
