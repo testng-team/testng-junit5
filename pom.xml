@@ -256,18 +256,6 @@
               </execution>
             </executions>
           </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>gpg</id>
-      <activation>
-        <property>
-          <name>gpg.keyname</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
           <plugin>
             <artifactId>maven-gpg-plugin</artifactId>
             <version>1.6</version>
