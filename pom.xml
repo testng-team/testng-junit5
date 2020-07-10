@@ -54,6 +54,7 @@
     <junit.platform.version>1.5.0</junit.platform.version>
     <junit.jupiter.version>5.5.0</junit.jupiter.version>
     <testng.version>7.0.0</testng.version>
+    <bnd.version>5.1.1</bnd.version>
   </properties>
 
   <dependencies>
@@ -95,12 +96,54 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.1.2</version>
+          <configuration>
+            <archive>
+              <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+            </archive>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>com.coveo</groupId>
           <artifactId>fmt-maven-plugin</artifactId>
           <version>2.9</version>
         </plugin>
+        <plugin>
+          <groupId>biz.aQute.bnd</groupId>
+          <artifactId>bnd-maven-plugin</artifactId>
+          <version>${bnd.version}</version>
+            <executions>
+              <execution>
+                <id>bnd-process</id>
+                <goals>
+                  <goal>bnd-process</goal>
+                </goals>
+              </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>com.coveo</groupId>
+                    <artifactId>fmt-maven-plugin</artifactId>
+                    <versionRange>[1.0.0,)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore/>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>        
       </plugins>
     </pluginManagement>
     <plugins>
@@ -122,6 +165,10 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+          <groupId>biz.aQute.bnd</groupId>
+          <artifactId>bnd-maven-plugin</artifactId>
       </plugin>
       <!-- Launch JUnit Platform directly -->
       <plugin>
