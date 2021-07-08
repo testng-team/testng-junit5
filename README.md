@@ -1,3 +1,5 @@
+**The project is no more active and replaced by https://github.com/junit-team/testng-engine**
+
 # testng-junit5
 Implementation of the JUnit5 Platform TestEngine interface
 
